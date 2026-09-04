@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Anti Brainrot Tool</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Anti Brainrot Tool</h1>
+  <p class="subtitle">Elke dag een beetje scherper</p>
+
+  <section class="progress">
+    <div class="kpi-row">
+      <div class="kpi">
+        <p class="kpi-value" id="kpi-streak">–</p>
+        <p class="kpi-label">Dagen reeks</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi-value" id="kpi-today">–</p>
+        <p class="kpi-label">Score vandaag</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi-value" id="kpi-total">–</p>
+        <p class="kpi-label">Totaal geoefend</p>
+      </div>
+    </div>
+
+    <div class="chart-head">
+      <p class="chart-avg" id="chart-avg">&nbsp;</p>
+      <div class="chart-toggle">
+        <button class="range-btn is-active" data-range="7" type="button">7 dagen</button>
+        <button class="range-btn" data-range="30" type="button">30 dagen</button>
+      </div>
+    </div>
+    <div id="chart"></div>
+  </section>
+
+  <nav class="menu">
+    <a class="toc-item" href="games/card-match/index.html"><span class="toc-num">01</span>Kaarten Memory<span class="toc-leader"></span></a>
+    <a class="toc-item" href="games/addition-2/index.html"><span class="toc-num">02</span>Optelsommen (2 cijfers)<span class="toc-leader"></span></a>
+    <a class="toc-item" href="games/addition-3/index.html"><span class="toc-num">03</span>Optelsommen (3 cijfers)<span class="toc-leader"></span></a>
+    <a class="toc-item" href="games/multiplication/index.html"><span class="toc-num">04</span>Tafels (1&ndash;20)<span class="toc-leader"></span></a>
+    <a class="toc-item" href="games/division/index.html"><span class="toc-num">05</span>Delingen (1&ndash;100)<span class="toc-leader"></span></a>
+    <a class="toc-item" href="games/sudoku/index.html"><span class="toc-num">06</span>Sudoku<span class="toc-leader"></span></a>
+    <a class="toc-item" href="games/binary-sudoku/index.html"><span class="toc-num">07</span>Binaire Sudoku<span class="toc-leader"></span></a>
+  </nav>
+
+  <script src="stats.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

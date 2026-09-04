@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Practice Page</title>
+  <style>
+    h1 {
+      color: blue;
+    }
+    p {
+      color: green;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>wowowowowowowowowow</h1>
+  <p>I'm learning how HTML works.</p>
+
+  <button id="myButton">Click me</button>
+  <p id="message"></p>
+
+  <script>
+    const button = document.getElementById("myButton");
+    const message = document.getElementById("message");
+
+    button.addEventListener("click", function () {
+      message.textContent = "You clicked the button!";
+    });
+  </script>
+</body>
+</html>

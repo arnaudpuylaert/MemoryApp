@@ -1,0 +1,51 @@
+.rules {
+  max-width: 400px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(6, 48px);
+  grid-template-rows: repeat(6, 48px);
+  margin-top: 4px;
+  background: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.cell {
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  border: 1px solid var(--rule);
+  background: #fff;
+  color: var(--ink);
+  padding: 0;
+}
+
+.cell.given {
+  background: var(--accent-soft);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.cell.correct {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.cell.incorrect {
+  background: var(--err-soft);
+  color: var(--err);
+}
+
+.controls {
+  margin-top: 24px;
+  display: flex;
+  gap: 10px;
+}

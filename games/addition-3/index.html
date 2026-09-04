@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Optelsommen (3 cijfers)</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../../base.css">
+</head>
+<body>
+  <a class="back-link" href="../../index.html">← Terug naar menu</a>
+  <h1>Optelsommen (3 getallen, 1-100)</h1>
+  <p id="score">Score: 0/0</p>
+
+  <div class="quiz-box">
+    <p id="question"></p>
+    <form id="answer-form">
+      <input type="number" id="answer" autocomplete="off" required>
+      <button type="submit">Controleer</button>
+    </form>
+    <p id="feedback"></p>
+  </div>
+
+  <script src="../../stats.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

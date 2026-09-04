@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Binaire Sudoku</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="back-link" href="../../index.html">← Terug naar menu</a>
+  <h1>Binaire Sudoku</h1>
+  <p class="rules">
+    Vul elk vakje met 0 of 1. Elke rij en kolom heeft evenveel 0'en als 1'en,
+    nooit 3 dezelfde naast elkaar, en geen twee identieke rijen of kolommen.
+  </p>
+  <p id="status">Vul de ontbrekende cijfers in.</p>
+
+  <div id="board"></div>
+
+  <div class="controls">
+    <button id="check-btn">Controleer</button>
+    <button id="new-btn">Nieuwe puzzel</button>
+  </div>
+
+  <script src="../../stats.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
