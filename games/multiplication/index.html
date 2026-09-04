@@ -7,19 +7,31 @@
   <link rel="stylesheet" href="../../base.css">
 </head>
 <body>
-  <a class="back-link" href="../../index.html">← Terug naar menu</a>
-  <h1>Tafels van 1 t/m 20</h1>
-  <p id="score">Score: 0/0</p>
-
-  <div class="quiz-box">
-    <p id="question"></p>
-    <form id="answer-form">
-      <input type="number" id="answer" autocomplete="off" required>
-      <button type="submit">Controleer</button>
+  <div id="gate" class="gate-overlay">
+    <form id="gate-form" class="gate-form">
+      <p class="gate-label">Wachtwoord vereist</p>
+      <input type="password" id="gate-password" placeholder="Wachtwoord" autocomplete="current-password" autofocus>
+      <button type="submit">Ontgrendel</button>
+      <p class="gate-error" id="gate-error"></p>
     </form>
-    <p id="feedback"></p>
   </div>
 
+  <div id="app-content" hidden>
+    <a class="back-link" href="../../index.html">← Terug naar menu</a>
+    <h1>Tafels van 1 t/m 20</h1>
+    <p id="score">Score: 0/0</p>
+
+    <div class="quiz-box">
+      <p id="question"></p>
+      <form id="answer-form">
+        <input type="number" id="answer" autocomplete="off" required>
+        <button type="submit">Controleer</button>
+      </form>
+      <p id="feedback"></p>
+    </div>
+  </div>
+
+  <script src="../../gate.js"></script>
   <script src="../../stats.js"></script>
   <script src="script.js"></script>
 </body>

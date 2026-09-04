@@ -1,14 +1,21 @@
 const WEEKDAYS = ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"];
 
+let currentGame = "all";
+let currentRange = 7;
+
 function parseDateKey(key) {
   const [year, month, day] = key.split("-").map(Number);
   return new Date(year, month - 1, day);
 }
 
-function renderKpis() {
-  const streak = getStreak();
-  const today = getTodayStats();
-  const total = getTotalPracticed();
+function rangeLabel(days) {
+  return days === 7 ? "laatste 7 dagen" : "laatste 30 dagen";
+}
+
+function renderKpis(gameId) {
+  const streak = getStreak(gameId);
+  const today = getTodayStats(gameId);
+  const total = getTotalPracticed(gameId);
 
   document.getElementById("kpi-streak").textContent = streak;
   document.getElementById("kpi-today").textContent =
@@ -16,8 +23,8 @@ function renderKpis() {
   document.getElementById("kpi-total").textContent = total;
 }
 
-function renderChartHeadline(days) {
-  const avg = getAveragePct(days);
+function renderChartHeadline(gameId, days) {
+  const avg = getAveragePct(gameId, days);
   const headline = document.getElementById("chart-avg");
 
   if (avg === null) {
@@ -27,8 +34,8 @@ function renderChartHeadline(days) {
   }
 }
 
-function renderChart(days) {
-  const series = getDailySeries(days);
+function renderChart(gameId, days) {
+  const series = getDailySeries(gameId, days);
   const width = 400;
   const height = 160;
   const padLeft = 30;
@@ -88,21 +95,25 @@ function renderChart(days) {
   `;
 }
 
-function rangeLabel(days) {
-  return days === 7 ? "laatste 7 dagen" : "laatste 30 dagen";
+function renderAll() {
+  renderKpis(currentGame);
+  renderChartHeadline(currentGame, currentRange);
+  renderChart(currentGame, currentRange);
 }
 
-function setActiveRange(days) {
-  document.querySelectorAll(".range-btn").forEach((btn) => {
-    btn.classList.toggle("is-active", Number(btn.dataset.range) === days);
-  });
-  renderChartHeadline(days);
-  renderChart(days);
-}
-
-document.querySelectorAll(".range-btn").forEach((btn) => {
-  btn.addEventListener("click", () => setActiveRange(Number(btn.dataset.range)));
+document.getElementById("game-filter").addEventListener("change", (event) => {
+  currentGame = event.target.value;
+  renderAll();
 });
 
-renderKpis();
-setActiveRange(7);
+document.querySelectorAll(".range-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    currentRange = Number(btn.dataset.range);
+    document.querySelectorAll(".range-btn").forEach((b) => {
+      b.classList.toggle("is-active", b === btn);
+    });
+    renderAll();
+  });
+});
+
+renderAll();

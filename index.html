@@ -8,45 +8,71 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Anti Brainrot Tool</h1>
-  <p class="subtitle">Elke dag een beetje scherper</p>
+  <div id="gate" class="gate-overlay">
+    <form id="gate-form" class="gate-form">
+      <p class="gate-label">Wachtwoord vereist</p>
+      <input type="password" id="gate-password" placeholder="Wachtwoord" autocomplete="current-password" autofocus>
+      <button type="submit">Ontgrendel</button>
+      <p class="gate-error" id="gate-error"></p>
+    </form>
+  </div>
 
-  <section class="progress">
-    <div class="kpi-row">
-      <div class="kpi">
-        <p class="kpi-value" id="kpi-streak">–</p>
-        <p class="kpi-label">Dagen reeks</p>
-      </div>
-      <div class="kpi">
-        <p class="kpi-value" id="kpi-today">–</p>
-        <p class="kpi-label">Score vandaag</p>
-      </div>
-      <div class="kpi">
-        <p class="kpi-value" id="kpi-total">–</p>
-        <p class="kpi-label">Totaal geoefend</p>
-      </div>
-    </div>
+  <div id="app-content" hidden>
+    <h1>Anti Brainrot Tool</h1>
+    <p class="subtitle">Elke dag een beetje scherper</p>
 
-    <div class="chart-head">
-      <p class="chart-avg" id="chart-avg">&nbsp;</p>
-      <div class="chart-toggle">
-        <button class="range-btn is-active" data-range="7" type="button">7 dagen</button>
-        <button class="range-btn" data-range="30" type="button">30 dagen</button>
+    <section class="progress">
+      <div class="filter-row">
+        <label for="game-filter">Score voor</label>
+        <select id="game-filter">
+          <option value="all">Alle spellen</option>
+          <option value="card-match">Kaarten Memory</option>
+          <option value="addition-2">Optelsommen (2 cijfers)</option>
+          <option value="addition-3">Optelsommen (3 cijfers)</option>
+          <option value="multiplication">Tafels (1&ndash;20)</option>
+          <option value="division">Delingen (1&ndash;100)</option>
+          <option value="sudoku">Sudoku</option>
+          <option value="binary-sudoku">Binaire Sudoku</option>
+        </select>
       </div>
-    </div>
-    <div id="chart"></div>
-  </section>
 
-  <nav class="menu">
-    <a class="toc-item" href="games/card-match/index.html"><span class="toc-num">01</span>Kaarten Memory<span class="toc-leader"></span></a>
-    <a class="toc-item" href="games/addition-2/index.html"><span class="toc-num">02</span>Optelsommen (2 cijfers)<span class="toc-leader"></span></a>
-    <a class="toc-item" href="games/addition-3/index.html"><span class="toc-num">03</span>Optelsommen (3 cijfers)<span class="toc-leader"></span></a>
-    <a class="toc-item" href="games/multiplication/index.html"><span class="toc-num">04</span>Tafels (1&ndash;20)<span class="toc-leader"></span></a>
-    <a class="toc-item" href="games/division/index.html"><span class="toc-num">05</span>Delingen (1&ndash;100)<span class="toc-leader"></span></a>
-    <a class="toc-item" href="games/sudoku/index.html"><span class="toc-num">06</span>Sudoku<span class="toc-leader"></span></a>
-    <a class="toc-item" href="games/binary-sudoku/index.html"><span class="toc-num">07</span>Binaire Sudoku<span class="toc-leader"></span></a>
-  </nav>
+      <div class="kpi-row">
+        <div class="kpi">
+          <p class="kpi-value" id="kpi-streak">–</p>
+          <p class="kpi-label">Dagen reeks</p>
+        </div>
+        <div class="kpi">
+          <p class="kpi-value" id="kpi-today">–</p>
+          <p class="kpi-label">Score vandaag</p>
+        </div>
+        <div class="kpi">
+          <p class="kpi-value" id="kpi-total">–</p>
+          <p class="kpi-label">Totaal geoefend</p>
+        </div>
+      </div>
 
+      <div class="chart-head">
+        <p class="chart-avg" id="chart-avg">&nbsp;</p>
+        <div class="chart-toggle">
+          <button class="range-btn is-active" data-range="7" type="button">7 dagen</button>
+          <button class="range-btn" data-range="30" type="button">30 dagen</button>
+        </div>
+      </div>
+      <div id="chart"></div>
+    </section>
+
+    <nav class="menu">
+      <a class="toc-item" href="games/card-match/index.html"><span class="toc-num">01</span>Kaarten Memory<span class="toc-leader"></span></a>
+      <a class="toc-item" href="games/addition-2/index.html"><span class="toc-num">02</span>Optelsommen (2 cijfers)<span class="toc-leader"></span></a>
+      <a class="toc-item" href="games/addition-3/index.html"><span class="toc-num">03</span>Optelsommen (3 cijfers)<span class="toc-leader"></span></a>
+      <a class="toc-item" href="games/multiplication/index.html"><span class="toc-num">04</span>Tafels (1&ndash;20)<span class="toc-leader"></span></a>
+      <a class="toc-item" href="games/division/index.html"><span class="toc-num">05</span>Delingen (1&ndash;100)<span class="toc-leader"></span></a>
+      <a class="toc-item" href="games/sudoku/index.html"><span class="toc-num">06</span>Sudoku<span class="toc-leader"></span></a>
+      <a class="toc-item" href="games/binary-sudoku/index.html"><span class="toc-num">07</span>Binaire Sudoku<span class="toc-leader"></span></a>
+    </nav>
+  </div>
+
+  <script src="gate.js"></script>
   <script src="stats.js"></script>
   <script src="script.js"></script>
 </body>

@@ -29,7 +29,7 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   attempts++;
   const userAnswer = Number(inputEl.value);
-  recordAttempt(userAnswer === answer);
+  recordAttempt("addition-2", userAnswer === answer);
 
   if (userAnswer === answer) {
     score++;

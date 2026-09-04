@@ -53,7 +53,7 @@ function flipCard(card) {
 
 function checkMatch() {
   const isMatch = firstCard.dataset.emoji === secondCard.dataset.emoji;
-  recordAttempt(isMatch);
+  recordAttempt("card-match", isMatch);
 
   if (isMatch) {
     firstCard.classList.add("matched");

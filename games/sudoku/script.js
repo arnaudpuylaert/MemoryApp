@@ -132,7 +132,7 @@ function checkBoard() {
   });
 
   if (allFilled) {
-    recordAttempt(allCorrect);
+    recordAttempt("sudoku", allCorrect);
   }
 
   if (!allFilled) {

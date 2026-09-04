@@ -8,17 +8,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="back-link" href="../../index.html">← Terug naar menu</a>
-  <h1>Sudoku</h1>
-  <p id="status">Vul de ontbrekende cijfers in.</p>
-
-  <div id="board"></div>
-
-  <div class="controls">
-    <button id="check-btn">Controleer</button>
-    <button id="new-btn">Nieuwe puzzel</button>
+  <div id="gate" class="gate-overlay">
+    <form id="gate-form" class="gate-form">
+      <p class="gate-label">Wachtwoord vereist</p>
+      <input type="password" id="gate-password" placeholder="Wachtwoord" autocomplete="current-password" autofocus>
+      <button type="submit">Ontgrendel</button>
+      <p class="gate-error" id="gate-error"></p>
+    </form>
   </div>
 
+  <div id="app-content" hidden>
+    <a class="back-link" href="../../index.html">← Terug naar menu</a>
+    <h1>Sudoku</h1>
+    <p id="status">Vul de ontbrekende cijfers in.</p>
+
+    <div id="board"></div>
+
+    <div class="controls">
+      <button id="check-btn">Controleer</button>
+      <button id="new-btn">Nieuwe puzzel</button>
+    </div>
+  </div>
+
+  <script src="../../gate.js"></script>
   <script src="../../stats.js"></script>
   <script src="script.js"></script>
 </body>

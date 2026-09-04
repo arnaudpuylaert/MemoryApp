@@ -168,7 +168,7 @@ function checkBoard() {
   });
 
   if (allFilled) {
-    recordAttempt(allCorrect);
+    recordAttempt("binary-sudoku", allCorrect);
   }
 
   if (!allFilled) {

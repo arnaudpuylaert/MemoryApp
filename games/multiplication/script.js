@@ -31,7 +31,7 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   attempts++;
   const userAnswer = Number(inputEl.value);
-  recordAttempt(userAnswer === answer);
+  recordAttempt("multiplication", userAnswer === answer);
 
   if (userAnswer === answer) {
     score++;

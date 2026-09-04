@@ -4,6 +4,37 @@
   margin-top: 8px;
 }
 
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-row label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.filter-row select {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+.filter-row select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
 .kpi-row {
   display: flex;
   gap: 0;

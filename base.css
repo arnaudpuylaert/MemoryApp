@@ -132,3 +132,48 @@ a:focus-visible {
   font-size: 14px;
   min-height: 20px;
 }
+
+.gate-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.gate-overlay[hidden] {
+  display: none;
+}
+
+.gate-form {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.gate-label {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+
+.gate-form input[type="password"] {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.gate-form button {
+  width: 100%;
+  margin-left: 0;
+}
+
+.gate-error {
+  color: var(--err);
+  font-size: 13px;
+  min-height: 18px;
+  margin-top: 14px;
+}

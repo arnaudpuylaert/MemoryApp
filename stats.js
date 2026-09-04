@@ -1,4 +1,5 @@
 const STATS_KEY = "memoryapp_stats";
+const ALL_GAMES = "all";
 
 function loadStats() {
   try {
@@ -25,63 +26,91 @@ function todayKey() {
   return dateKeyOffset(0);
 }
 
-// Registreert één beantwoorde vraag (of één opgeloste puzzel-poging) voor vandaag.
-function recordAttempt(isCorrect) {
+// Registreert één beantwoorde vraag (of één opgeloste puzzel-poging) voor vandaag, voor één specifiek spel.
+function recordAttempt(gameId, isCorrect) {
   const stats = loadStats();
+  if (!stats[gameId]) stats[gameId] = {};
+
   const key = todayKey();
-  if (!stats[key]) stats[key] = { correct: 0, total: 0 };
-  stats[key].total++;
-  if (isCorrect) stats[key].correct++;
+  if (!stats[gameId][key]) stats[gameId][key] = { correct: 0, total: 0 };
+
+  stats[gameId][key].total++;
+  if (isCorrect) stats[gameId][key].correct++;
+
   saveStats(stats);
 }
 
-function getTodayStats() {
+// {correct, total} voor één dag. Zonder gameId (of "all") worden alle spellen samengeteld.
+function getDayTotals(gameId, key) {
   const stats = loadStats();
-  return stats[todayKey()] || { correct: 0, total: 0 };
+
+  if (gameId && gameId !== ALL_GAMES) {
+    return stats[gameId]?.[key] || { correct: 0, total: 0 };
+  }
+
+  let correct = 0;
+  let total = 0;
+  for (const game of Object.values(stats)) {
+    const day = game[key];
+    if (day) {
+      correct += day.correct;
+      total += day.total;
+    }
+  }
+  return { correct, total };
+}
+
+function getTodayStats(gameId) {
+  return getDayTotals(gameId, todayKey());
 }
 
 // Aantal opeenvolgende dagen (tot en met vandaag of gisteren) met minstens 1 oefening.
-function getStreak() {
-  const stats = loadStats();
-  let offset = stats[todayKey()] ? 0 : 1;
+function getStreak(gameId) {
+  let offset = getDayTotals(gameId, todayKey()).total > 0 ? 0 : 1;
   let streak = 0;
-  while (stats[dateKeyOffset(offset)]) {
+  while (getDayTotals(gameId, dateKeyOffset(offset)).total > 0) {
     streak++;
     offset++;
   }
   return streak;
 }
 
-function getTotalPracticed() {
+function getTotalPracticed(gameId) {
   const stats = loadStats();
-  return Object.values(stats).reduce((sum, day) => sum + day.total, 0);
+
+  if (gameId && gameId !== ALL_GAMES) {
+    const game = stats[gameId] || {};
+    return Object.values(game).reduce((sum, day) => sum + day.total, 0);
+  }
+
+  let total = 0;
+  for (const game of Object.values(stats)) {
+    total += Object.values(game).reduce((sum, day) => sum + day.total, 0);
+  }
+  return total;
 }
 
-function getAveragePct(days) {
-  const stats = loadStats();
+function getAveragePct(gameId, days) {
   let correct = 0;
   let total = 0;
   for (let i = 0; i < days; i++) {
-    const day = stats[dateKeyOffset(i)];
-    if (day) {
-      correct += day.correct;
-      total += day.total;
-    }
+    const day = getDayTotals(gameId, dateKeyOffset(i));
+    correct += day.correct;
+    total += day.total;
   }
   return total === 0 ? null : Math.round((correct / total) * 100);
 }
 
 // Reeks van {key, pct, total} van oud naar nieuw, voor het tekenen van een grafiekje.
-function getDailySeries(days) {
-  const stats = loadStats();
+function getDailySeries(gameId, days) {
   const series = [];
   for (let i = days - 1; i >= 0; i--) {
     const key = dateKeyOffset(i);
-    const day = stats[key];
+    const day = getDayTotals(gameId, key);
     series.push({
       key,
-      pct: day && day.total > 0 ? Math.round((day.correct / day.total) * 100) : null,
-      total: day ? day.total : 0,
+      pct: day.total > 0 ? Math.round((day.correct / day.total) * 100) : null,
+      total: day.total,
     });
   }
   return series;
