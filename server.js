@@ -9,6 +9,9 @@ const mimeTypes = {
   ".html": "text/html",
   ".css": "text/css",
   ".js": "application/javascript",
+  ".json": "application/manifest+json",
+  ".png": "image/png",
+  ".ico": "image/x-icon",
 };
 
 http
